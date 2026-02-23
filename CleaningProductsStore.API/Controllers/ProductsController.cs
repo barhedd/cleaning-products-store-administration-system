@@ -32,6 +32,13 @@ public class ProductsController(IProductService productService) : ControllerBase
     [HttpGet("{id}")]
     public IActionResult GetById(Guid id)
     {
-        return Ok(); // lo implementamos luego
+        return Ok();
+    }
+
+    [HttpGet("by-status")]
+    public async Task<IActionResult> GetByStatus([FromQuery] bool isDeleted)
+    {
+        var result = await _productService.GetByStatusAsync(isDeleted);
+        return Ok(result);
     }
 }

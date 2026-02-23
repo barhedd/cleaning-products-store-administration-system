@@ -3,6 +3,7 @@ using CleaningProductsStore.Application.Services;
 using CleaningProductsStore.Domain.Interfaces;
 using CleaningProductsStore.Infrastructure;
 using CleaningProductsStore.Infrastructure.Contexts;
+using CleaningProductsStore.Infrastructure.Queries;
 using CleaningProductsStore.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductQueries, ProductQueries>();
 
 builder.Services.AddDbContext<CleaningProductsStoreContext>(options =>
     options.UseSqlServer(

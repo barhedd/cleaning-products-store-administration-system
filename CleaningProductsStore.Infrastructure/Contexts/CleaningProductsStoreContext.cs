@@ -1,4 +1,5 @@
-﻿using CleaningProductsStore.Domain.Entities;
+﻿using CleaningProductsStore.Application.DataTransferObjects;
+using CleaningProductsStore.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
@@ -13,6 +14,7 @@ public class CleaningProductsStoreContext(
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<ProductByStatusDto>().HasNoKey();
         base.OnModelCreating(modelBuilder);
 
         // Aplicar configuraciones
