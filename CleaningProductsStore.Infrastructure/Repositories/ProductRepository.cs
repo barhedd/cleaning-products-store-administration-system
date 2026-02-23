@@ -18,4 +18,11 @@ public class ProductRepository(CleaningProductsStoreContext dbContext) : IProduc
     {
         await _dbContext.Products.AddAsync(product);
     }
+
+    public async Task<List<Product>> GetByIdsAsync(List<Guid> ids)
+    {
+        return await _dbContext.Products
+            .Where(x => ids.Contains(x.Id))
+            .ToListAsync();
+    }
 }
