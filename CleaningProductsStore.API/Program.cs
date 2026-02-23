@@ -1,4 +1,9 @@
+using CleaningProductsStore.Application.Interfaces;
+using CleaningProductsStore.Application.Services;
+using CleaningProductsStore.Domain.Interfaces;
+using CleaningProductsStore.Infrastructure;
 using CleaningProductsStore.Infrastructure.Contexts;
+using CleaningProductsStore.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +14,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddDbContext<CleaningProductsStoreContext>(options =>
     options.UseSqlServer(
