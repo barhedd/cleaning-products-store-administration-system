@@ -10,6 +10,12 @@ public class Order : BaseEntity
     public IReadOnlyCollection<OrderItem> Items => _items.AsReadOnly();
     public decimal TotalAmount => _items.Sum(i => i.Total);
 
+    public Order()
+    {
+        Id = Guid.NewGuid();
+        CreatedDate = DateTimeOffset.UtcNow;
+    }
+
     public void AddItem(Guid productId, string productName, decimal unitPrice, int quantity)
     {
         if (quantity <= 0)
